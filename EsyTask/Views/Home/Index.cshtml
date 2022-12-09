@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<User> UserManager
+@model Product;
+<form>
+    <table class="table" border="1">
+        <tr>
+            <td class="qwerty"><a asp-route-sortBy="Name" asp-action="Sort">Name</a></td>
+            <td class="qwerty"><a asp-route-sortBy="Quantity" asp-action="Sort">Quantity</a></td>
+            <td class="qwerty"><a asp-route-sortBy="Price" asp-action="Sort">Price</a></td>
+        </tr>
+    </table>
+</form>
+@foreach (var item in ViewBag.Products)
+{
+<form>
+    <table class="table" border="1">
+        <tr>
+            <td class="qwerty">@item.Name</td>
+            <td class="qwerty">@item.Quantity</td>
+            <td class="qwerty">@item.Price</td>
+        </tr>
+    </table>
+    <input asp-for="Name" value="@item.Name" hidden />
+    <input asp-for="Quantity" value="@item.Quantity" hidden />
+    <input asp-for="Price" value="@item.Price" hidden />
+    <a asp-action="EditView">Edit</a>
+    <a asp-action="Delete">Delete</a>
+</form>
+}
+<form>
+    <a asp-controller="Home" asp-action="AddView">Add</a>
+</form>

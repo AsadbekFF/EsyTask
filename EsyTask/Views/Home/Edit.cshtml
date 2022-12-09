@@ -1,0 +1,13 @@
+﻿@model Product
+@inject UserManager<User> UserManager
+@{ 
+    string userName = UserManager.GetUserAsync(User).Result.UserName;
+}
+<form>
+    <input asp-for="Name" value="@Model.Name" />
+    <input asp-for="Quantity" value="@Model.Quantity" />
+    <input asp-for="Price" value="@Model.Price" />
+    <input asp-route-replaceId="@Model.Id" hidden/>
+    <input asp-route-userName="@userName" hidden/>
+    <button asp-action="Edit">Edit</button>
+</form>
