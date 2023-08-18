@@ -37,11 +37,13 @@ namespace EsyTask.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddView()
         {
             return View("Add");
         }
 
+        [HttpPost]
         public IActionResult Add(Product product, string userName)
         {
             product.Id = Guid.NewGuid().ToString();
